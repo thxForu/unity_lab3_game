@@ -6,9 +6,14 @@ public class GrabFlag : MonoBehaviour
 {
     public GameObject youWinText;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider col)
     {
-        Invoke("Freeze", 0.1f);
+        if (col.gameObject.tag == "Player")
+        {
+            Invoke("Freeze", 0.1f);
+            print("bruh");
+        } 
+
     }
 
     public void Freeze()
