@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject enemy;
+    public Vector3 pointA;
+    public Vector3 pointB;
+    public float speed;
+
+    void Start()
+    {
+    }
+
+    void Update()
+    {
+        transform.position = Vector3.Lerp(pointA, pointB, Mathf.PingPong(Time.time/speed, 1));
+    }
 
     public void OnTriggerEnter(Collider col)
     {
