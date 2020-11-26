@@ -57,5 +57,8 @@ public class CharacterMovement : MonoBehaviour
         if(other.CompareTag("Vodka")){
             GameEvents.current.InvulerAb();
         }
+        if(other.CompareTag("Brick") && Enemy.damageAble){
+            Destroy(gameObject);
+        }
     }
 }

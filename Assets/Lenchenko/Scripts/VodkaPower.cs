@@ -16,7 +16,7 @@ public class VodkaPower : MonoBehaviour
     }
 
     private void InvulerAb(){
-        OffMePls.SetActive(false);
+        Destroy(OffMePls);
         StartCoroutine(WaitCoroutine());
 
     }
