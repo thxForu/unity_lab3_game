@@ -65,6 +65,9 @@ public class CharacterMovement : MonoBehaviour
             StartCoroutine(Flickering());
             GameEvents.current.InvulerAb();
         }
+        if(other.CompareTag("Brick") && Enemy.damageAble){
+            Destroy(gameObject);
+        }
     }
 
     private IEnumerator Flickering()
