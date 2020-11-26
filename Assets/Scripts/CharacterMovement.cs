@@ -42,14 +42,21 @@ public class CharacterMovement : MonoBehaviour
         }
 
         var move = (transform.right * x + transform.forward * z);
-        _controller.Move(move * (speed) * Time.deltaTime);
+        _controller.Move(move * speed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            _animator.SetTrigger("jump");
+            Invoke(nameof(Jump),0.3f);
         }
+
         _velocity.y += gravity * Time.deltaTime;
         _animator.SetFloat("speed",Math.Abs(z+x));
         _controller.Move(_velocity * Time.deltaTime);
+    }
+
+    private void Jump()
+    {
+        _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 }
