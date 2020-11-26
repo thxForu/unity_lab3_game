@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public Vector3 pointB;
     public float speed;
 
-
+    public static bool damageAble = true;
     void Update()
     {
         transform.position = Vector3.Lerp(pointA, pointB, Mathf.PingPong(Time.time/speed, 1));
@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player") && damageAble)
         {
             // if lives > 1 --> lives--
             // else {}
