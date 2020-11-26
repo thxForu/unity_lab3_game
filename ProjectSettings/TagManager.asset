@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Flag
   - Ground
+  - Vodka
   layers:
   - Default
   - TransparentFX
