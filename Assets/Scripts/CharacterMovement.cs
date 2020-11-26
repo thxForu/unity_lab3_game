@@ -1,57 +1,56 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
-{   
-    public float speed;
-    public float walkSpeed = 6.0f;
-    public float sprintSpeed = 12.0f;
-    public float jumpSpeed = 12.0f;
-    public float gravity = 20f;
+{        
+    
+    public float speed = 10f;
+    public float gravity = -9.81f;
+    public float jumpHeight = 2f;
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    
+    private Vector3 _velocity;
+    private bool _isGrounded;
+    private float _increaseSpeed = 7f;
 
-    private Vector3 moveDirection = Vector3.zero;
-    private CharacterController controller;
+    private CharacterController _controller;
+    private Animator _animator;
 
-    void Start()
+    private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (controller.isGrounded)
+        _isGrounded = Physics.CheckSphere(groundCheck.position,groundDistance, groundMask);
+        if (_isGrounded && _velocity.y < 0)
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                speed = sprintSpeed;
-            }
-            else
-            {
-                speed = walkSpeed;
-            }
-
-            moveDirection *= speed;
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                moveDirection.y = jumpSpeed;
-            }
-
+            _velocity.y = -2f;
         }
-        else
+        
+        var x = Input.GetAxis("Horizontal");
+        var z = Input.GetAxis("Vertical");
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), moveDirection.y, Input.GetAxis("Vertical"));
-            speed = walkSpeed;
-            moveDirection.x *= speed;
-            moveDirection.z *= speed;
+            speed = +_increaseSpeed;
         }
 
-        moveDirection.y -= gravity * Time.deltaTime;
+        var move = (transform.right * x + transform.forward * z);
+        _controller.Move(move * (speed) * Time.deltaTime);
 
-        controller.Move(moveDirection * Time.deltaTime);
+        if (Input.GetButtonDown("Jump") && _isGrounded)
+        {
+            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        _velocity.y += gravity * Time.deltaTime;
+        _animator.SetFloat("speed",Math.Abs(z+x));
+        _controller.Move(_velocity * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other) {
