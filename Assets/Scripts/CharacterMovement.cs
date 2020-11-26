@@ -55,8 +55,15 @@ public class CharacterMovement : MonoBehaviour
         _controller.Move(_velocity * Time.deltaTime);
     }
 
+<<<<<<< HEAD
     private void Jump()
     {
         _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+=======
+    private void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Vodka")){
+            GameEvents.current.InvulerAb();
+        }
+>>>>>>> e1c8e7ef1887608d6708f3b628b1304dfa6a0876
     }
 }
