@@ -521,6 +521,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178350254}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &440368726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440368727}
+  m_Layer: 0
+  m_Name: PlayerMeshes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &440368727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440368726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1118091376508574283}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &538460277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1118091376508574283}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 11.841, y: -1.658, z: -0.292}
 --- !u!1 &1220772571
 GameObject:
@@ -2178,7 +2208,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1118091376508574283}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2077269047
 GameObject:
@@ -2574,14 +2604,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bfc79764d1a694bbd356dc417b13b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundDistance: 0.2
   speed: 3
   gravity: -20
   jumpHeight: 2
   groundCheck: {fileID: 2069981884}
-  groundDistance: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  meshes:
+  - {fileID: 6146245160861977310}
+  - {fileID: 5694436990725493976}
 --- !u!136 &346656784473702645
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2758,7 +2791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148667097965}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7939029, y: 2.31, z: 31.4}
+  m_LocalPosition: {x: 2.7939029, y: 1.29, z: 32.26}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 677859820}
@@ -3013,8 +3046,9 @@ Transform:
   m_LocalPosition: {x: -0.76, y: 0.02, z: -41.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5754536640592291377}
   - {fileID: 8287493572994966538}
+  - {fileID: 5754536640592291377}
+  - {fileID: 440368727}
   - {fileID: 1219726118}
   - {fileID: 2069981884}
   m_Father: {fileID: 0}
@@ -4842,15 +4876,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5694436990725493976}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.963794, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.963794, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1815794727905542163}
   - {fileID: 6875000953340976202}
   - {fileID: 1788533493157191271}
   m_Father: {fileID: 1118091376508574283}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 11.988719, y: -9.084097, z: -2.3881135}
 --- !u!1 &5812320550742233732
 GameObject:
@@ -5624,8 +5658,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6146245160861977310}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5633330089368419602}
@@ -5639,7 +5673,7 @@ Transform:
   - {fileID: 1472672506050594700}
   - {fileID: 4894321262456961316}
   m_Father: {fileID: 1118091376508574283}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8335280824313149853
 Transform:

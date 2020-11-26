@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {        
-    
+    public float groundDistance = 0.4f;
     public float speed = 10f;
     public float gravity = -9.81f;
     public float jumpHeight = 2f;
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    
+    public GameObject[] meshes;
     private Vector3 _velocity;
     private bool _isGrounded;
     private float _increaseSpeed = 7f;
@@ -61,8 +60,23 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Vodka")){
+        if(other.CompareTag("Vodka"))
+        {
+            StartCoroutine(Flickering());
             GameEvents.current.InvulerAb();
+        }
+    }
+
+    private IEnumerator Flickering()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            meshes[0].SetActive(false);
+            meshes[1].SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+            meshes[0].SetActive(true);
+            meshes[1].SetActive(true);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }
