@@ -8,9 +8,6 @@ public class Enemy : MonoBehaviour
     public Vector3 pointB;
     public float speed;
 
-    void Start()
-    {
-    }
 
     void Update()
     {
@@ -19,11 +16,12 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.CompareTag("Player"))
         {
             // if lives > 1 --> lives--
             // else {}
             Destroy(col.gameObject);
+
         }
     }
 }

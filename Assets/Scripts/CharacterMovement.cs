@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
-{
+{        
     public float speed;
     public float walkSpeed = 6.0f;
     public float sprintSpeed = 12.0f;
@@ -16,7 +16,6 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-
     }
 
     void Update()
@@ -39,7 +38,6 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = jumpSpeed;
-                //print("Jump");
             }
 
         }

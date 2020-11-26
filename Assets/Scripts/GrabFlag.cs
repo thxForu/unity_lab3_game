@@ -8,9 +8,9 @@ public class GrabFlag : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.CompareTag("Player"))
         {
-            Invoke("Freeze", 0.1f);
+            Invoke(nameof(Freeze), 0.1f);
             print("bruh");
         } 
 
