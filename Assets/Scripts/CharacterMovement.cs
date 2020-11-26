@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {        
-    public float groundDistance = 0.4f;
+    
     public float speed = 10f;
     public float gravity = -9.81f;
     public float jumpHeight = 2f;
     public Transform groundCheck;
+    public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    public GameObject[] meshes;
+    
     private Vector3 _velocity;
     private bool _isGrounded;
     private float _increaseSpeed = 7f;
@@ -41,45 +42,23 @@ public class CharacterMovement : MonoBehaviour
         }
 
         var move = (transform.right * x + transform.forward * z);
-        _controller.Move(move * speed * Time.deltaTime);
+        _controller.Move(move * (speed) * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            _animator.SetTrigger("jump");
-            Invoke(nameof(Jump),0.3f);
+            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-
         _velocity.y += gravity * Time.deltaTime;
         _animator.SetFloat("speed",Math.Abs(z+x));
         _controller.Move(_velocity * Time.deltaTime);
     }
 
-    private void Jump()
-    {
-        _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-    }
-
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Vodka"))
-        {
-            StartCoroutine(Flickering());
+        if(other.CompareTag("Vodka")){
             GameEvents.current.InvulerAb();
         }
         if(other.CompareTag("Brick") && Enemy.damageAble){
             Destroy(gameObject);
-        }
-    }
-
-    private IEnumerator Flickering()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            meshes[0].SetActive(false);
-            meshes[1].SetActive(false);
-            yield return new WaitForSeconds(0.2f);
-            meshes[0].SetActive(true);
-            meshes[1].SetActive(true);
-            yield return new WaitForSeconds(0.2f);
         }
     }
 }
