@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public GameObject[] meshes;
     
     private Vector3 _velocity;
     private bool _isGrounded;
@@ -46,7 +47,8 @@ public class CharacterMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            Invoke(nameof(Jump),0.3f);
+            _animator.SetTrigger("jump");
         }
         _velocity.y += gravity * Time.deltaTime;
         _animator.SetFloat("speed",Math.Abs(z+x));
@@ -55,10 +57,27 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Vodka")){
+            StartCoroutine(Flickering());
             GameEvents.current.InvulerAb();
         }
         if(other.CompareTag("Brick") && Enemy.damageAble){
             Destroy(gameObject);
+        }
+    }    
+    private void Jump()
+    {
+        _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+    }
+    private IEnumerator Flickering()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            meshes[0].SetActive(false);
+            meshes[1].SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+            meshes[0].SetActive(true);
+            meshes[1].SetActive(true);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

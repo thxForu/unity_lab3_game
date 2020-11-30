@@ -9,6 +9,7 @@
       <e p="Assets" t="Include">
         <e p="Lenchenko" t="Include">
           <e p="Scripts" t="Include">
+            <e p="BrickPlayerDestroyer.cs" t="Include" />
             <e p="GameEvents.cs" t="Include" />
             <e p="VodkaPower.cs" t="Include" />
           </e>
