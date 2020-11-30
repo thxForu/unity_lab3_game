@@ -22,10 +22,4 @@ public class BrickPlayerDestroyer : MonoBehaviour
         }
         transform.Translate(direction*speed*Time.deltaTime);
     }
-
-    private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Player") && Enemy.damageAble){
-            Destroy(other.gameObject);
-        }
-    }
 }

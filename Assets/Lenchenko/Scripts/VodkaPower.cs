@@ -18,7 +18,6 @@ public class VodkaPower : MonoBehaviour
     private void InvulerAb(){
         Destroy(OffMePls);
         StartCoroutine(WaitCoroutine());
-
     }
 
     private IEnumerator WaitCoroutine(){
